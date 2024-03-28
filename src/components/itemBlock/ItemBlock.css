@@ -1,0 +1,53 @@
+.Display {
+	width: 375px;
+	height: 400px;
+	background: rgb(155, 191, 201);
+	background: linear-gradient(
+		306deg,
+		rgba(155, 191, 201, 1) 0%,
+		rgba(142, 229, 254, 1) 100%
+	);
+	margin: 70px;
+	border-radius: 20px;
+	box-shadow: 10px 10px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.imgCard {
+	display: flex;
+	margin: 40px 40px 0px 40px;
+	align-items: center;
+	justify-content: center;
+}
+
+.NameProduct {
+	text-align: center;
+	font-size: 48px;
+}
+
+.Price {
+	background-color: white;
+	width: 100px;
+	height: 50px;
+	border-radius: 12px;
+	text-align: center;
+	padding: 5px 10px 5px 10px;
+	font-size: 24px;
+}
+
+.Buy {
+	background-color: white;
+	width: 75px;
+	height: 75px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 20px;
+}
+
+.InfoProduct {
+	display: flex;
+	justify-content: space-between;
+  align-items: center;
+  width: calc(100% - 32px);
+  margin: 0px 16px; 
+}
