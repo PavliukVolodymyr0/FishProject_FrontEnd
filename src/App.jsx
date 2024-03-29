@@ -1,21 +1,24 @@
 import './App.css'
-import { Route, Routes } from 'react-router-dom'
+import { Route, Routes, useLocation } from 'react-router-dom'
 
 import Main from './pages/main/Main'
 import Header from './components/header/Header'
 import Footer from './components/footer/Footer'
+import Auth from './pages/auth/Auth'
 
 function App() {
+const location = useLocation()
   return (
+
 		<div className='wrapper'>
-			<Header />
+			{location.path==='/auth'?<Header />:''}
 			<div className='content'>
 				<Routes>
 					<Route path='/' element={<Main />} />
-					
+					<Route path='/auth' element={<Auth />} />
 				</Routes>
 			</div>
-			<Footer />
+			{location.path==='/auth'?<Footer />:''}
 		</div>
 	)
 }

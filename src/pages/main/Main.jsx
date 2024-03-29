@@ -1,5 +1,3 @@
-import React from 'react'
-
 import BasicDemo from '../../components/carousel/BasicDemo'
 import ItemBlock from '../../components/itemBlock/ItemBlock'
 import { Link } from 'react-router-dom'
