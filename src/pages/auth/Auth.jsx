@@ -16,6 +16,7 @@ function Auth() {
 
     return (
         <>
+        <div className="body_auth">
             <img src={logo} />
             <img className='fish1' src={fish1} alt='fish1' />
             <img className='fish2' src={fish2} alt='fish2' />
@@ -27,7 +28,9 @@ function Auth() {
                 <p onClick={handleForgotPasswordClick} className='forgot_password'>Забули пароль?</p>
                 <button className='button_auth'>Увійти</button>
                 <Link to='/auth'><p className='reg'>Зареєструватись</p></Link>
+
             </form>
+            </div>
         </>
     )
 }

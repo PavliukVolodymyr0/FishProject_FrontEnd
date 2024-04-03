@@ -1,7 +1,12 @@
-body {
-    height: 1130px;
-    background: rgb(155,190,200);
-    background: linear-gradient(180deg, rgba(155,190,200,1) 0%, rgba(141,230,255,1) 100%);
+.body_auth {
+    width: 1864px;
+    height: 1080px;
+    background: rgb(155, 190, 200);
+    background: linear-gradient(
+        180deg,
+        rgba(155, 190, 200, 1) 0%,
+        rgba(141, 230, 255, 1) 100%
+    );
 }
 
 .auth_block { 
