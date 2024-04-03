@@ -6,6 +6,7 @@ import Header from './components/header/Header'
 import Footer from './components/footer/Footer'
 import Auth from './pages/auth/Auth'
 import AdminMain from './pages/adminMain/AdminMain'
+import Admin from './pages/admin/Admin'
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
 					<Route path='/' element={<Main />} />
 					<Route path='/auth' element={<Auth />} />
 					<Route path='/adminMain' element={<AdminMain />} />
+					<Route path='/admin' element={<Admin />} />
 				</Routes>
 			</div>
 			{location.pathname !== '/auth' && <Footer />}
