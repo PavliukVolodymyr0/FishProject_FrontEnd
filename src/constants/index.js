@@ -13,3 +13,9 @@ export const navMenu = [
 	{ name: 'Категорії', link: '/2' },
 	{ name: 'Про нас ', link: '/3' },
 ]
+
+export const navAdminMenu = [
+	{ name: 'Графіки', link: '/' },
+	{ name: 'Замовлення', link: '/1' },
+	{ name: 'Товар', link: '/2' },
+]

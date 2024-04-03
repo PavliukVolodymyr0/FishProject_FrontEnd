@@ -15,21 +15,27 @@ function Auth() {
     };
 
     return (
-        <>
-            <img src={logo} />
-            <img className='fish1' src={fish1} alt='fish1' />
-            <img className='fish2' src={fish2} alt='fish2' />
-            <form className='auth_block'>
-                {click ? <ForgotPassword /> : ''}
-                <h1>Авторизація</h1>
-                <Input title={'Введіть емейл'} type={'email'} />
-                <Input title={'Введіть пароль'} type={'password'} />
-                <p onClick={handleForgotPasswordClick} className='forgot_password'>Забули пароль?</p>
-                <button className='button_auth'>Увійти</button>
-                <Link to='/auth'><p className='reg'>Зареєструватись</p></Link>
-            </form>
-        </>
-    )
+			<>
+				<div className='body_auth' >
+					<img src={logo} />
+					<img className='fish1' src={fish1} alt='fish1' />
+					<img className='fish2' src={fish2} alt='fish2' />
+					<form className='auth_block'>
+						{click ? <ForgotPassword /> : ''}
+						<h1>Авторизація</h1>
+						<Input title={'Введіть емейл'} type={'email'} />
+						<Input title={'Введіть пароль'} type={'password'} />
+						<p onClick={handleForgotPasswordClick} className='forgot_password'>
+							Забули пароль?
+						</p>
+						<button className='button_auth'>Увійти</button>
+						<Link to='/auth'>
+							<p className='reg'>Зареєструватись</p>
+						</Link>
+					</form>
+				</div>
+			</>
+		)
 }
 
 export default Auth

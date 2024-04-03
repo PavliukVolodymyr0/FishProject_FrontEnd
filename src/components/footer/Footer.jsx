@@ -14,7 +14,7 @@ const Footer = () => {
 				<ul className='footer_list'>
 					<h2 className='footer_titles'>Телефони</h2>
 					<li>+ 380 66 666 6666</li>
-					<li>+ 380 98 228 1337</li>
+					<li>+ 380 66 666 6666</li>
 				</ul>
 
 				<ul className='footer_list'>
