@@ -1,0 +1,61 @@
+.AddProductBlock {
+	width: 1000px;
+	height: 700px;
+	background-color: #ddf2fd;
+	border-radius: 40px;
+	margin: 0 500px;
+	align-items: center;
+	justify-content: center;
+	display: flex;
+	flex-direction: column;
+	position: absolute;
+	top: 250px;
+	z-index: 1000;
+}
+
+.AddProductBlock input {
+	width: 490px;
+	height: 75px;
+	border-radius: 20px;
+	background-color: #ffffff;
+	color: #828282;
+	margin: 0 auto;
+}
+
+.addedProduct {
+	width: 56px;
+	height: 56px;
+	background-color: #ffffff;
+	border: none;
+	font-size: 36px;
+	font-weight: bold;
+	border-radius: 10px;
+}
+
+.addPhotoBlockk {
+	display: flex;
+	justify-content: center;
+	margin-top: 30px;
+	margin-bottom: 200px;
+}
+
+.addPhotoBlockk p {
+	font-weight: bold;
+	font-size: 36px;
+	margin-left: 20px;
+}
+
+.addProductName h1 {
+	margin-bottom: 48px;
+	text-align: center;
+}
+
+.btnAccept {
+	width: 150px;
+	height: 50px;
+	background-color: #9bbec8;
+	border-radius: 20px;
+	font-weight: bold;
+	font-size: 20px;
+	border: none;
+}

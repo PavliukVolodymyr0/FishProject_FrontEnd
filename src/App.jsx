@@ -7,6 +7,7 @@ import Footer from './components/footer/Footer'
 import Auth from './pages/auth/Auth'
 import AdminMain from './pages/adminMain/AdminMain'
 import Admin from './pages/admin/Admin'
+import Order from './pages/order/Order'
 
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
 					<Route path='/auth' element={<Auth />} />
 					<Route path='/adminMain' element={<AdminMain />} />
 					<Route path='/admin' element={<Admin />} />
+					<Route path='/order' element={<Order />} />
 				</Routes>
 			</div>
 			{location.pathname !== '/auth' && <Footer />}

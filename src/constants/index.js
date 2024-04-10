@@ -9,9 +9,8 @@ export const category = [
 
 export const navMenu = [
 	{ name: 'Головна', link: '/' },
-	{ name: 'Товари та послуги', link: '/1' },
-	{ name: 'Категорії', link: '/2' },
-	{ name: 'Про нас ', link: '/3' },
+	{ name: 'Категорії', link: '/1' },
+	{ name: 'Про нас ', link: '/2' },
 ]
 
 export const navAdminMenu = [

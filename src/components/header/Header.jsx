@@ -16,7 +16,7 @@ const Header = () => {
 					<img className='logo' src={logo} />
 				</Link>
 				<div className='nav_list'>
-					{location.pathname === '/admin'
+					{location.pathname === '/adminMain'
 						? navAdminMenu.map((obj, index) => (
 								<Link to={obj.link} key={index}>
 									<p className={isActive(obj.link) ? 'activePage' : 'nav_link'}>
@@ -31,7 +31,7 @@ const Header = () => {
 									</p>
 								</Link>
 						  ))}
-					{location.pathname === '/admin' ? (
+					{location.pathname === '/adminMain' ? (
 						<Link to='/adminMain'>
 							<div className='shopcart'>
 								<Exit />
