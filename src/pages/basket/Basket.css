@@ -1,0 +1,42 @@
+.block1{
+    margin-top: 191px;
+    margin-left: 258px;
+}
+
+.button_basket{
+    display: flex;
+    margin-left: 1164px;
+}
+
+.price_basket {
+    height: 100px;
+    width: 300px;
+    background: rgb(142,229,254);
+    background: linear-gradient(137deg, rgba(142,229,254,1) 0%, rgba(155,191,201,1) 100%);
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.price_basket h1 {
+    font-size: 32px;
+	font-weight: bold;
+}
+
+.basket_bt {
+    height: 100px;
+    width: 250px;
+    background: rgb(142,229,254);
+    background: linear-gradient(137deg, rgba(142,229,254,1) 0%, rgba(155,191,201,1) 100%);
+    border-radius: 20px;
+    font-size: 32px;
+	font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border: none;
+    margin-left: 50px;
+}

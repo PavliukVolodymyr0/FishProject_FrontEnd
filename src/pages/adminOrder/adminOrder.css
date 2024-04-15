@@ -1,0 +1,7 @@
+.block{
+    margin-left: 50px;
+    margin-top: 291px;
+    display: grid;
+    grid-template-columns: repeat(5, 100fr); 
+    grid-template-rows: repeat(2, auto);
+}
