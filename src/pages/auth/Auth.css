@@ -1,5 +1,5 @@
 .body_auth {
-	width: 1920px;
+	width: 1864px;
 	height: 1180px;
 	background: rgb(155, 190, 200);
 	background: linear-gradient(
@@ -21,6 +21,10 @@
 	justify-content: center;
 	display: flex;
 	flex-direction: column;
+}
+
+.auth_block input {
+	margin-bottom: 27px;
 }
 
 .auth_block h1 {
@@ -71,4 +75,24 @@
 .reg {
 	font-size: 20px;
 	font-weight: bold;
+}
+
+.Input {
+    width: 475px;
+    height: 70px;
+    border-radius: 13px;
+    background-color: #DDF2FD;
+    font-size: 28px;
+    font-weight: bold;
+    color: #828282;
+    border: none;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.Input {
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
 }

@@ -5,6 +5,8 @@ import o2 from '../../assets/images/o2.png'
 import woter from '../../assets/images/woter.png'
 import temp from '../../assets/images/temp.png'
 import trev from '../../assets/images/trevoga.png'
+import up from '../../assets/images/up.png'
+import down from '../../assets/images/down.png'
 import './Admin.css'
 
 function Admin() {
@@ -128,25 +130,42 @@ function Admin() {
           )}
         </div>
       </div>
+      <div className="info_panel_block">
+        <div className="info_panel">
+          <h1>Інформаційна панель</h1>
+          <div className="info_block">
+            <img src={trev} alt="trevoga" />
+            <h1>Увага у вас низький рівень води</h1>
+            <button className='info_button'>Готово</button>
+          </div>
+          <div className="info_block" style={{backgroundColor: '#CCD9F9'}}>
+            <h1>Увага у вас низький рівень води</h1>
+            <button className='info_button'>Готово</button>
+          </div>
+          <div className="info_block" style={{backgroundColor: '#A7FABF'}}>
+            <h1>Увага у вас низький рівень води</h1>
+            <button className='info_button'>Готово</button>
+          </div>
+          <div className="info_block" style={{backgroundColor: '#DCD2A6'}}>
+            <h1>Увага у вас низький рівень води</h1>
+            <button className='info_button'>Готово</button>
+          </div>
+        </div>
 
-      <div className="info_panel">
-        <h1>Інформаційна панель</h1>
-        <div className="info_block">
-          <img src={trev} alt="trevoga" />
-          <h1>Увага у вас низький рівень води</h1>
-          <button className='info_button'>Готово</button>
-        </div>
-        <div className="info_block" style={{backgroundColor: '#CCD9F9'}}>
-          <h1>Увага у вас низький рівень води</h1>
-          <button className='info_button'>Готово</button>
-        </div>
-        <div className="info_block" style={{backgroundColor: '#A7FABF'}}>
-          <h1>Увага у вас низький рівень води</h1>
-          <button className='info_button'>Готово</button>
-        </div>
-        <div className="info_block" style={{backgroundColor: '#DCD2A6'}}>
-          <h1>Увага у вас низький рівень води</h1>
-          <button className='info_button'>Готово</button>
+        <div className="regulator">
+          <h1>Відредагуйте рівень води</h1>
+          <div className="reg_block">
+            <div className="up_down">
+              <img src={up} alt='ph' />
+              <img src={down} alt='ph' />
+            </div>
+            <div className="counter_block">
+              <div className="counter">
+                140
+              </div>
+              <h1>см</h1>
+            </div>
+          </div>
         </div>
       </div>
     </>
