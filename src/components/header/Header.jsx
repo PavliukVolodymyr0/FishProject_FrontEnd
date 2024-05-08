@@ -38,7 +38,7 @@ const Header = () => {
 							</div>
 						</Link>
 					) : (
-						<Link to='/adminMain'>
+						<Link to='/basket'>
 							<div className='shopcart'>
 								<ShopCart />
 							</div>

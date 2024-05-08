@@ -9,7 +9,7 @@ export const category = [
 
 export const navMenu = [
 	{ name: 'Головна', link: '/' },
-	{ name: 'Категорії', link: '/1' },
+	{ name: 'Категорії', link: '/kategory' },
 	{ name: 'Про нас ', link: '/2' },
 ]
 
