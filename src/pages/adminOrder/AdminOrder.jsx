@@ -5,11 +5,10 @@ import OrderWindow from '../../components/orderWindow/OrderWindow.jsx';
 
 function AdminOrder() {
     const [windowOpen, setWindowOpen] = useState(false);
-    const [selectedOrder, setSelectedOrder] = useState(null); // Додайте стейт для збереження обраного замовлення
+    const [selectedOrder, setSelectedOrder] = useState(null);
     const [orders, setOrders] = useState([]);
 
     useEffect(() => {
-        // Виклик функції для отримання даних з сервера при завантаженні компоненту
         fetchData();
     }, []);
 
@@ -17,16 +16,15 @@ function AdminOrder() {
         console.log('Fetching data...');
         try {
             const response = await axios.post('http://127.0.0.1:8000/api/admin/orders');
-            console.log(response.data.orders); // Перевірка отриманих даних
-            // Установка отриманих даних у стан компонента
-            setOrders(response.data.orders); // Зверніть увагу на зміну тут
+            console.log(response.data.orders);
+            setOrders(response.data.orders);
         } catch (error) {
             console.error('Error fetching data:', error);
         }
     };
 
     const toggleWindow = (order) => {
-        setSelectedOrder(order); // Збереження деталей обраного замовлення
+        setSelectedOrder(order); 
         setWindowOpen(!windowOpen);
     };
 
@@ -36,7 +34,7 @@ function AdminOrder() {
                 {orders.length > 0 ? (
                     orders.map(order => (
                         <div className="order_block" key={order.id}>
-                            <div className="order_card" onClick={() => toggleWindow(order)}> {/* Передайте order як аргумент */}
+                            <div className="order_card" onClick={() => toggleWindow(order)}> 
                                 <h1>Замовлення</h1>
                                 <h2>№{order.id}</h2>
                                 <div className="status">
@@ -50,7 +48,7 @@ function AdminOrder() {
                     <p>Дані замовлень відсутні</p>
                 )}
             </div>
-            {windowOpen && <OrderWindow order={selectedOrder} onClose={() => setWindowOpen(false)} />} {/* Передайте обране замовлення і функцію закриття */}
+            {windowOpen && <OrderWindow order={selectedOrder} onClose={() => setWindowOpen(false)} />} 
         </>
     );
 }

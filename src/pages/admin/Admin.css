@@ -99,6 +99,12 @@
     margin-left: 34px;
 }
 
+.info_content{
+  display: flex;
+  width: 800px;
+  justify-content: space-between;
+}
+
 .info_button{
     width: 75px;
     height: 40px;
@@ -106,7 +112,7 @@
     border: none;
     border-radius: 20px;
     margin-top: 38px;
-    margin-left: 274px;
+
     font-size: 15px;
     font-family: 'Inter', sans-serif;
     font-weight :600;
@@ -202,3 +208,12 @@
     display: flex;
     align-items: center;
   }
+
+
+.reg_block input{
+  border-radius: 4px;
+  border: none;
+  margin-left: 10px;
+  border: 1px solid grey;
+  width: 50px;
+}

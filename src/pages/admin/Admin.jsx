@@ -1,27 +1,50 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
+import axios from 'axios';
 import Chart from 'chart.js/auto';
-import ph from '../../assets/images/ph.png'
-import o2 from '../../assets/images/o2.png'
-import woter from '../../assets/images/woter.png'
-import temp from '../../assets/images/temp.png'
-import trev from '../../assets/images/trevoga.png'
-import up from '../../assets/images/up.png'
-import down from '../../assets/images/down.png'
-import './Admin.css'
+import ph from '../../assets/images/ph.png';
+import o2 from '../../assets/images/o2.png';
+import woter from '../../assets/images/woter.png';
+import temp from '../../assets/images/temp.png';
+import trev from '../../assets/images/trevoga.png';
+import up from '../../assets/images/up.png';
+import down from '../../assets/images/down.png';
+import './Admin.css';
 
 function Admin() {
   const [data, setData] = useState({
-    waterLevel: [12, 19, 3, 5, 2, 3, 6],
-    oxygenLevel: [5, 10, 8, 15, 12, 9, 6],
-    phLevel: [6, 7, 7.5, 6.5, 6.8, 6.3, 7.2],
-    temperature: [25, 26, 27, 28, 27.5, 26.8, 25.5],
-    min:[9,9,9,9,9,9,9],
-    max:[22,22,22,22,22,22,22],
+    waterLevel: [],
+    oxygenLevel: [],
+    phLevel: [],
+    temperature: [],
+    min: [9, 9, 9, 9, 9, 9, 9],
+    max: [22, 22, 22, 22, 22, 22, 22],
   });
 
+  const [warnings, setWarnings] = useState([]);
+  const [editingParam, setEditingParam] = useState(null);
+  const [counter, setCounter] = useState(0);
+  const chartRef = useRef(null);
+
   useEffect(() => {
+    const fetchWarnings = async () => {
+      try {
+        const response = await axios.post('http://127.0.0.1:8000/api/admin/warnings');
+        setWarnings(response.data.warnings || []);
+      } catch (error) {
+        console.error('Помилка отримання попереджень:', error);
+      }
+    };
+
+    fetchWarnings();
+  }, []);
+
+  useEffect(() => {
+    if (chartRef.current) {
+      chartRef.current.destroy();
+    }
+
     const ctx = document.getElementById('myChart').getContext('2d');
-    new Chart(ctx, {
+    chartRef.current = new Chart(ctx, {
       type: 'line',
       data: {
         labels: ['00:00', '03:00', '06:00', '09:00', '12:00', '15:00', '18:00', '21:00'],
@@ -75,6 +98,12 @@ function Admin() {
         },
       },
     });
+
+    return () => {
+      if (chartRef.current) {
+        chartRef.current.destroy();
+      }
+    };
   }, [data]);
 
   const [showRange, setShowRange] = useState(false);
@@ -82,6 +111,63 @@ function Admin() {
   const toggleRange = () => {
     setShowRange(!showRange);
   };
+
+  const handleClick = async (timeline) => {
+    const today = new Date();
+    const day = today.getDate();
+    const month = today.getMonth() + 1;
+    const year = today.getFullYear();
+
+    try {
+      const response = await axios.get('http://127.0.0.1:8000/api/admin/sensor', {
+        params: {
+          timeline,
+          day,
+          month,
+          year,
+        },
+      });
+      const sensorData = response.data || [];
+      const newData = {
+        waterLevel: sensorData.filter(item => item.name === 'water_level').map(item => item.value),
+        oxygenLevel: sensorData.filter(item => item.name === 'oxygen_level').map(item => item.value),
+        phLevel: sensorData.filter(item => item.name === 'acidity').map(item => item.value),
+        temperature: sensorData.filter(item => item.name === 'temperature').map(item => item.value),
+        min: Array(sensorData.length).fill(9),
+        max: Array(sensorData.length).fill(22),
+      };
+
+      setData(newData);
+      console.log(newData)
+    } catch (error) {
+      console.error('Сталася помилка!', error);
+    }
+  };
+
+  const handleWarningClick = (warning) => {
+    if (warning.includes('кислотність')) {
+      setEditingParam('acidity');
+    } else if (warning.includes('температура')) {
+      setEditingParam('temperature');
+    } else if (warning.includes('рівень води')) {
+      setEditingParam('water_level');
+    } else if (warning.includes('рівень кисню')) {
+      setEditingParam('oxygen_level');
+    }
+  };
+
+  const handleSave = async () => {
+    try {
+      await axios.post('http://127.0.0.1:8000/api/admin/addsensor', {
+        name: editingParam,
+        value: counter,
+      });
+      alert('Значення збережено!');
+    } catch (error) {
+      console.error('Помилка збереження даних:', error);
+    }
+  };
+
   return (
     <>
       <div className="level_block">
@@ -117,59 +203,51 @@ function Admin() {
           </div>
           {showRange && (
             <div className="window_range">
-              <div className="range_date1">
+              <div className="range_date1" onClick={() => handleClick(1)}>
                 За день 
               </div>
-              <div className="range_date1">
+              <div className="range_date1" onClick={() => handleClick(7)}>
                 За тиждень 
               </div>
-              <div className="range_date1">
+              <div className="range_date1" onClick={() => handleClick(30)}>
                 За місяць
               </div>
             </div>
           )}
         </div>
       </div>
+
       <div className="info_panel_block">
         <div className="info_panel">
           <h1>Інформаційна панель</h1>
-          <div className="info_block">
-            <img src={trev} alt="trevoga" />
-            <h1>Увага у вас низький рівень води</h1>
-            <button className='info_button'>Готово</button>
-          </div>
-          <div className="info_block" style={{backgroundColor: '#CCD9F9'}}>
-            <h1>Увага у вас низький рівень води</h1>
-            <button className='info_button'>Готово</button>
-          </div>
-          <div className="info_block" style={{backgroundColor: '#A7FABF'}}>
-            <h1>Увага у вас низький рівень води</h1>
-            <button className='info_button'>Готово</button>
-          </div>
-          <div className="info_block" style={{backgroundColor: '#DCD2A6'}}>
-            <h1>Увага у вас низький рівень води</h1>
-            <button className='info_button'>Готово</button>
-          </div>
+          {warnings.map((warning, index) => (
+            <div className="info_block" key={index} onClick={() => handleWarningClick(warning)}>
+              <img src={trev} alt="trevoga" />
+              <div className="info_content">
+                <h1>{warning}</h1>
+                <button className='info_button' onClick={handleSave}>Готово</button>
+              </div>
+            </div>
+          ))}
         </div>
 
         <div className="regulator">
-          <h1>Відредагуйте рівень води</h1>
+          <h1>Відредагуйте рівень {editingParam}</h1>
           <div className="reg_block">
             <div className="up_down">
-              <img src={up} alt='ph' />
-              <img src={down} alt='ph' />
+              <img src={up} alt='up' onClick={() => setCounter(counter + 1)} />
+              <img src={down} alt='down' onClick={() => setCounter(counter - 1)} />
             </div>
-            <div className="counter_block">
-              <div className="counter">
-                140
-              </div>
-              <h1>см</h1>
-            </div>
+            <input 
+              type="number" 
+              value={counter} 
+              onChange={(e) => setCounter(parseFloat(e.target.value))} 
+            />
           </div>
         </div>
       </div>
     </>
-  )
+  );
 }
 
-export default Admin
+export default Admin;
