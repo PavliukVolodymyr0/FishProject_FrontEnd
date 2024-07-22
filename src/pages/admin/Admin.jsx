@@ -20,10 +20,24 @@ function Admin() {
     max: [22, 22, 22, 22, 22, 22, 22],
   });
 
+  const [monthlyData, setMonthlyData] = useState({
+    waterLevel: [],
+    oxygenLevel: [],
+    phLevel: [],
+    temperature: [],
+    min: [],
+    max: [],
+  });
+
+  
+
   const [warnings, setWarnings] = useState([]);
+  const [historyDates, setHistoryDates] = useState([]);
   const [editingParam, setEditingParam] = useState(null);
   const [counter, setCounter] = useState(0);
+  const [selectedRange, setSelectedRange] = useState(null); // Додано стан для збереження обраного діапазону
   const chartRef = useRef(null);
+  const monthlyChartRef = useRef(null);
 
   useEffect(() => {
     const fetchWarnings = async () => {
@@ -47,7 +61,7 @@ function Admin() {
     chartRef.current = new Chart(ctx, {
       type: 'line',
       data: {
-        labels: ['00:00', '03:00', '06:00', '09:00', '12:00', '15:00', '18:00', '21:00'],
+        labels: ['00:00', '08:00', '16:00', '00:00'], // Початкові мітки для "дня"
         datasets: [
           {
             label: 'Рівень води',
@@ -77,14 +91,14 @@ function Admin() {
             label: 'Min',
             data: data.min,
             borderColor: 'red',
-            backgroundColor: 'rgba(0, 255, 0, 0.1)',
+            backgroundColor: 'rgba(255, 0, 0, 0.1)',
             pointRadius: 0,
           },
           {
             label: 'Max',
             data: data.max,
             borderColor: 'red',
-            backgroundColor: 'rgba(0, 255, 0, 0.1)',
+            backgroundColor: 'rgba(255, 0, 0, 0.1)',
             pointRadius: 0,
           },
         ],
@@ -106,41 +120,155 @@ function Admin() {
     };
   }, [data]);
 
+  useEffect(() => {
+    if (monthlyChartRef.current) {
+      monthlyChartRef.current.destroy();
+    }
+
+    const ctx = document.getElementById('monthlyChart').getContext('2d');
+    monthlyChartRef.current = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: ['1', '2', '3', '4','5', '6', '7', '8','9', '10', '11', '12','13', '14', '15', '16','17', '18', '19', '20','21', '22', '23', '24','25', '26', '27', '28','29', '30', '31'],
+        datasets: [
+          {
+            label: 'Рівень води',
+            data: monthlyData.waterLevel,
+            borderColor: 'blue',
+            backgroundColor: 'rgba(0, 0, 255, 0.1)',
+          },
+          {
+            label: 'Рівень кисню',
+            data: monthlyData.oxygenLevel,
+            borderColor: 'lightblue',
+            backgroundColor: 'rgba(173, 216, 230, 0.1)',
+          },
+          {
+            label: 'Рівень pH',
+            data: monthlyData.phLevel,
+            borderColor: 'purple',
+            backgroundColor: 'rgba(128, 0, 128, 0.1)',
+          },
+          {
+            label: 'Температура',
+            data: monthlyData.temperature,
+            borderColor: 'green',
+            backgroundColor: 'rgba(0, 255, 0, 0.1)',
+          },
+          {
+            label: 'Min',
+            data: monthlyData.min,
+            borderColor: 'red',
+            backgroundColor: 'rgba(255, 0, 0, 0.1)',
+            pointRadius: 0,
+          },
+          {
+            label: 'Max',
+            data: monthlyData.max,
+            borderColor: 'red',
+            backgroundColor: 'rgba(255, 0, 0, 0.1)',
+            pointRadius: 0,
+          },
+        ],
+      },
+      options: {
+        responsive: true,
+        scales: {
+          y: {
+            beginAtZero: true,
+          },
+        },
+      },
+    });
+
+    return () => {
+      if (monthlyChartRef.current) {
+        monthlyChartRef.current.destroy();
+      }
+    };
+  }, [monthlyData]);
+
   const [showRange, setShowRange] = useState(false);
 
   const toggleRange = () => {
     setShowRange(!showRange);
   };
 
-  const handleClick = async (timeline) => {
-    const today = new Date();
-    const day = today.getDate();
-    const month = today.getMonth() + 1;
-    const year = today.getFullYear();
-
+  const handleRangeClick = async (range) => {
     try {
-      const response = await axios.get('http://127.0.0.1:8000/api/admin/sensor', {
-        params: {
-          timeline,
-          day,
-          month,
-          year,
-        },
-      });
-      const sensorData = response.data || [];
-      const newData = {
-        waterLevel: sensorData.filter(item => item.name === 'water_level').map(item => item.value),
-        oxygenLevel: sensorData.filter(item => item.name === 'oxygen_level').map(item => item.value),
-        phLevel: sensorData.filter(item => item.name === 'acidity').map(item => item.value),
-        temperature: sensorData.filter(item => item.name === 'temperature').map(item => item.value),
-        min: Array(sensorData.length).fill(9),
-        max: Array(sensorData.length).fill(22),
-      };
-
-      setData(newData);
-      console.log(newData)
+      const response = await axios.post('http://127.0.0.1:8000/api/admin/sensors/dates', { range });
+      setHistoryDates(response.data.dates || []);
+      setSelectedRange(range); // Збереження обраного діапазону
     } catch (error) {
-      console.error('Сталася помилка!', error);
+      console.error('Помилка отримання даних:', error);
+    }
+  };
+
+  const handleDateClick = async (date) => {
+    try {
+      const response = await axios.get('http://127.0.0.1:8000/api/admin/sensor/', {
+        params: { range: selectedRange, date_range: date },
+      });
+  
+      if (!response.data || !response.data.sensor_data) {
+        console.error('Неправильна відповідь від сервера:', response);
+        return;
+      }
+  
+      const sensorData = response.data.sensor_data;
+  
+      // Створення нових масивів даних для графіка "дня"
+      const newData = {
+        waterLevel: [],
+        oxygenLevel: [],
+        phLevel: [],
+        temperature: [],
+        min: [],
+        max: [],
+      };
+  
+      sensorData.forEach(({ name, data }) => {
+        if (name === 'water_level') {
+          newData.waterLevel = data.map(({ value }) => value);
+        } else if (name === 'oxygen_level') {
+          newData.oxygenLevel = data.map(({ value }) => value);
+        } else if (name === 'acidity') {
+          newData.phLevel = data.map(({ value }) => value);
+        } else if (name === 'temperature') {
+          newData.temperature = data.map(({ value }) => value);
+        }
+      });
+      // Створення нових масивів даних для графіка "місяця"
+      const newMonthlyData = {
+        waterLevel: new Array(31).fill(null), // Масив з 31 елементом для днів місяця
+        oxygenLevel: new Array(31).fill(null),
+        phLevel: new Array(31).fill(null),
+        temperature: new Array(31).fill(null),
+        min: [],
+        max: [],
+      };
+  
+      // Заповнення даними з сервера
+      sensorData.forEach((data) => {
+        const dayIndex = parseInt(data.day_of_month) - 1; // Індекс дня місяця (0 до 30)
+  
+        if (data.acidity !== undefined && data.oxygen_level !== undefined && 
+            data.temperature !== undefined && data.water_level !== undefined) {
+          newMonthlyData.phLevel[dayIndex] = data.acidity;
+          newMonthlyData.oxygenLevel[dayIndex] = data.oxygen_level;
+          newMonthlyData.temperature[dayIndex] = data.temperature;
+          newMonthlyData.waterLevel[dayIndex] = data.water_level;
+        }
+      });
+  
+      // Оновлення стану для графіка "дня"
+      setData(newData);
+  
+      // Оновлення стану для графіка "місяця"
+      setMonthlyData(newMonthlyData);
+      console.log(response.data);
+    } catch (error) {
+      console.error('Помилка отримання даних за датою:', error);
     }
   };
 
@@ -180,21 +308,24 @@ function Admin() {
       </div>
 
       <div className="flex">
+        <div className="grap">
+          <div className="graph">
+            <h1>За день</h1>
+            <canvas id="myChart"></canvas>
+          </div>
+    
         <div className="graph">
-          <canvas id="myChart"></canvas>
+        <h1>За місяць</h1>
+          <canvas id="monthlyChart"></canvas>
         </div>
-
+        </div>
         <div className="history_date">
           <h1>Історія даних</h1>
-          <div className="history_block">
-            23.03.2024
-          </div>
-          <div className="history_block">
-            23.03.2024
-          </div>
-          <div className="history_block">
-            23.03.2024
-          </div>
+          {historyDates.map((date, index) => (
+            <div className="history_block" key={index} onClick={() => handleDateClick(date)}>
+              {date}
+            </div>
+          ))}
         </div>
 
         <div className="range">
@@ -203,13 +334,13 @@ function Admin() {
           </div>
           {showRange && (
             <div className="window_range">
-              <div className="range_date1" onClick={() => handleClick(1)}>
+              <div className="range_date1" onClick={() => handleRangeClick('day')}>
                 За день 
               </div>
-              <div className="range_date1" onClick={() => handleClick(7)}>
+              <div className="range_date1" onClick={() => handleRangeClick('week')}>
                 За тиждень 
               </div>
-              <div className="range_date1" onClick={() => handleClick(30)}>
+              <div className="range_date1" onClick={() => handleRangeClick('month')}>
                 За місяць
               </div>
             </div>

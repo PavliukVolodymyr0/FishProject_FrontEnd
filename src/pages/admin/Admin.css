@@ -17,14 +17,14 @@
 }
 
 .history_date{
-    margin-left: 150px;
+    margin-left: 50px;
 }
 
 .history_date h1{
     font-size: 35px;
     font-family: 'Inter', sans-serif;
     font-weight: bold;
-    margin-left: 18px;
+    text-align: center;
     margin-bottom: 11px;
 
 }
@@ -37,8 +37,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 50px;
-    width: 273px;
+    height:50px;
+    width: 383px;
     border-radius: 20px;
     background: rgb(221,242,253);
     background: linear-gradient(180deg, rgba(221,242,253,1) 0%, rgba(142,229,255,1) 100%);
@@ -133,9 +133,12 @@
     font-weight: bold;
     margin-left: 101px;
 }
-
+.grap{
+  display: block;
+}
 .graph{
     margin-left: 180px;
+    
 }
 .graph canvas {
     width: 100%;
