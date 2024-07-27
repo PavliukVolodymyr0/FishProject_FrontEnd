@@ -71,3 +71,10 @@
 	display: flex;
   border: none;
 }
+
+.addCategoryOut , .discount {
+	display: flex;
+	margin: 0 auto;
+	align-items: center;
+	flex-direction: column;
+}

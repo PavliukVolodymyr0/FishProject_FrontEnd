@@ -19,17 +19,12 @@
 		rgba(155, 191, 201, 1) 0%,
 		rgba(142, 229, 254, 1) 100%
 	);
-	margin: 0 auto;
 	display: grid;
+	margin:  0 auto;
 	grid-template-columns: repeat(3, 1fr);
 	grid-gap: 10px;
 	border-radius: 40px;
-}
-
-.CategoryCard {
-	display: flex;
-	align-items: center;
-	justify-content: center;
+	
 }
 
 .btn {

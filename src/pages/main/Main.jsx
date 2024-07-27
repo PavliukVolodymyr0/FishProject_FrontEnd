@@ -1,12 +1,37 @@
+import React, { useEffect, useState } from 'react'
+import axios from 'axios'
 import BasicDemo from '../../components/carousel/BasicDemo'
 import ItemBlock from '../../components/itemBlock/ItemBlock'
 import { Link } from 'react-router-dom'
 import './Main.css'
 import Heading from '../../components/heading/Heading'
 import CategoryBlock from '../../components/categoryBlock/CategoryBlock'
-import { category } from '../../constants'
 
 function Main() {
+	const [categories, setCategories] = useState([])
+	const [products, setProducts] = useState([])
+
+	useEffect(() => {
+		axios
+			.post('http://127.0.0.1:8000/api/categories')
+			.then(response => {
+				setCategories(response.data.categories)
+				console.log(response.data)
+			})
+			.catch(error => {
+				console.error('Error fetching categories:', error)
+			})
+
+		axios
+			.post('http://127.0.0.1:8000/api/products')
+			.then(response => {
+				setProducts(response.data.products)
+			})
+			.catch(error => {
+				console.error('Error fetching products:', error)
+			})
+	}, [])
+
 	return (
 		<>
 			<div className='AutoSlider'>
@@ -14,18 +39,16 @@ function Main() {
 			</div>
 			<Heading title='Xіт продаж' />
 			<div className='ColectionCard'>
-				<ItemBlock />
-				<ItemBlock />
-				<ItemBlock />
+				{products.map(product => (
+					<ItemBlock key={product.id} product={product} />
+				))}
 			</div>
 			<Heading title='Категорії' />
 			<div className='Category'>
-				{category.map(item => (
-					<div className='CategoryCard' key={item.id}>
-						<CategoryBlock title={item.title} imgUrl={item.imgUrl} />
-					</div>
+				{categories.map(category => (
+					<CategoryBlock key={category.id} category={category} />
 				))}
-				<><br></br></>
+				<br />
 				<Link to='/category'>
 					<div className='btn'>Всі категорії</div>
 				</Link>

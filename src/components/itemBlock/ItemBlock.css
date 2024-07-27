@@ -14,9 +14,12 @@
 
 .imgCard {
 	display: flex;
-	margin: 40px 40px 0px 40px;
+	margin: 40px ;
 	align-items: center;
 	justify-content: center;
+	width: 250px;
+	height: 100px;
+	object-fit: cover;
 }
 
 .NameProduct {

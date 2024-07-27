@@ -18,8 +18,11 @@
 	height: 75px;
 	border-radius: 20px;
 	background-color: #ffffff;
-	color: #828282;
+	color: black;
 	margin: 0 auto;
+	padding: 10px;
+	font-size: 24px;
+
 }
 
 .addedProduct {
