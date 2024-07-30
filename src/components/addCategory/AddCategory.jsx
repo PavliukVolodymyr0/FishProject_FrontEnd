@@ -20,7 +20,7 @@ function AddCategory() {
 			formData.append('special_price', specialPrice)
 		}
 
-		let result = await fetch('http://127.0.0.1:8000/api/admin/addproduct', {
+		let result = await fetch('https://fish.api-dev.bmax.com.ua/api/admin/addproduct', {
 			method: 'POST',
 			body: formData,
 		})

@@ -9,7 +9,7 @@ function Kategory() {
     const [selectedCategory, setSelectedCategory] = useState("Категорії");
 
     useEffect(() => {
-        axios.post('http://127.0.0.1:8000/api/categories')
+        axios.post('https://fish.api-dev.bmax.com.ua/api/categories')
             .then(response => {
                 console.log(response.data);
                 const categoriesData = response.data.categories; 
@@ -21,7 +21,7 @@ function Kategory() {
     }, []);
 
     const handleCategoryClick = (categoryId, categoryName) => {
-        axios.post('http://127.0.0.1:8000/api/products', { category_id: categoryId })
+        axios.post('https://fish.api-dev.bmax.com.ua/api/products', { category_id: categoryId })
             .then(response => {
                 console.log(response.data);
                 setProducts(response.data.products);

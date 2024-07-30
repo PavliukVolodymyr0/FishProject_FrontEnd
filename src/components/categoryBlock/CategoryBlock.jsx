@@ -12,7 +12,7 @@ const CategoryBlock = ({ category }) => {
 			<div>
 				<img
 					className='imgCard'
-					src={`http://127.0.0.1:8000/storage/${category.photo}`}
+					src={`https://fish.api-dev.bmax.com.ua/storage/${category.photo}`}
 					alt={category.name}
 				/>
 			</div>

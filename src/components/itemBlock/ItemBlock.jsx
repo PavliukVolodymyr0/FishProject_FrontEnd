@@ -30,7 +30,7 @@ function ItemBlock({ product }) {
 		<div className='Display'>
 			<img
 				className='imgCard'
-				src={`http://127.0.0.1:8000/storage/${product.photo}`}
+				src={`https://fish.api-dev.bmax.com.ua/storage/${product.photo}`}
 			/>
 			<div>
 				<h1 className='NameProduct'>{product.name}</h1>

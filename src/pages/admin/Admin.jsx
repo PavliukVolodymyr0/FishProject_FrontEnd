@@ -42,7 +42,7 @@ function Admin() {
   useEffect(() => {
     const fetchWarnings = async () => {
       try {
-        const response = await axios.post('http://127.0.0.1:8000/api/admin/warnings');
+        const response = await axios.post('https://fish.api-dev.bmax.com.ua/api/admin/warnings');
         setWarnings(response.data.warnings || []);
       } catch (error) {
         console.error('Помилка отримання попереджень:', error);
@@ -196,7 +196,7 @@ function Admin() {
 
   const handleRangeClick = async (range) => {
     try {
-      const response = await axios.post('http://127.0.0.1:8000/api/admin/sensors/dates', { range });
+      const response = await axios.post('https://fish.api-dev.bmax.com.ua/api/admin/sensors/dates', { range });
       setHistoryDates(response.data.dates || []);
       setSelectedRange(range); // Збереження обраного діапазону
     } catch (error) {
@@ -206,7 +206,7 @@ function Admin() {
 
   const handleDateClick = async (date) => {
     try {
-      const response = await axios.get('http://127.0.0.1:8000/api/admin/sensor/', {
+      const response = await axios.get('https://fish.api-dev.bmax.com.ua/api/admin/sensor/', {
         params: { range: selectedRange, date_range: date },
       });
   
@@ -286,7 +286,7 @@ function Admin() {
 
   const handleSave = async () => {
     try {
-      await axios.post('http://127.0.0.1:8000/api/admin/addsensor', {
+      await axios.post('https://fish.api-dev.bmax.com.ua/api/admin/addsensor', {
         name: editingParam,
         value: counter,
       });

@@ -11,7 +11,7 @@ function AddProduct() {
 		formData.append('name', name)
 		formData.append('photo', photo)
 
-		let result = await fetch('http://127.0.0.1:8000/api/admin/addcategory', {
+		let result = await fetch('https://fish.api-dev.bmax.com.ua/api/admin/addcategory', {
 			method: 'POST',
 			body: formData,
 		})

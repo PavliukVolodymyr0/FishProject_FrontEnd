@@ -27,7 +27,7 @@ function Auth() {
 			params.append('email', email);
 			params.append('password', password);
 	
-			const response = await axios.post('http://127.0.0.1:8000/api/admin/login', params);
+			const response = await axios.post('https://fish.api-dev.bmax.com.ua/api/admin/login', params);
 	
 			if (response.status === 200) {
 				const data = response.data;

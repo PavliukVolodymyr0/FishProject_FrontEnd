@@ -11,10 +11,11 @@ export const navMenu = [
 	{ name: 'Головна', link: '/' },
 	{ name: 'Категорії', link: '/kategory' },
 	{ name: 'Про нас ', link: '/2' },
+	{ name: 'Admin', link: '/auth' },
 ]
 
 export const navAdminMenu = [
-	{ name: 'Графіки', link: '/' },
-	{ name: 'Замовлення', link: '/1' },
-	{ name: 'Товар', link: '/2' },
+	{ name: 'Графіки', link: '/Admin' },
+	{ name: 'Замовлення', link: '/adminOrder' },
+	{ name: 'Товар', link: '/adminMain' },
 ]

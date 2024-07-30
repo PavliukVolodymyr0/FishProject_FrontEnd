@@ -53,7 +53,7 @@ function Basket() {
 				<div className='block1'>
 					{cartItems.map((item, index) => (
 						<div className='basket_component' key={index}>
-							<img src={item.photo} alt='' />
+							<img src={`https://fish.api-dev.bmax.com.ua/storage/${item.photo}`} alt='' />
 							<h1>{item.name}</h1>
 							<div className='number'>
 								<img

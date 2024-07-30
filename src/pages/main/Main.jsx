@@ -13,7 +13,7 @@ function Main() {
 
 	useEffect(() => {
 		axios
-			.post('http://127.0.0.1:8000/api/categories')
+			.post('https://fish.api-dev.bmax.com.ua/api/categories')
 			.then(response => {
 				setCategories(response.data.categories)
 				console.log(response.data)
@@ -23,9 +23,10 @@ function Main() {
 			})
 
 		axios
-			.post('http://127.0.0.1:8000/api/products')
+			.post('https://fish.api-dev.bmax.com.ua/api/products')
 			.then(response => {
 				setProducts(response.data.products)
+				console.log(response.data)
 			})
 			.catch(error => {
 				console.error('Error fetching products:', error)
@@ -49,7 +50,7 @@ function Main() {
 					<CategoryBlock key={category.id} category={category} />
 				))}
 				<br />
-				<Link to='/category'>
+				<Link to='/kategory'>
 					<div className='btn'>Всі категорії</div>
 				</Link>
 			</div>

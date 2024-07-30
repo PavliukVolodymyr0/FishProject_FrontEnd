@@ -8,6 +8,7 @@ import Exit from '../../assets/svg/Exit.jsx'
 const Header = () => {
 	const location = useLocation()
 	const isActive = link => location.pathname === link
+	const isAdminPage = ['/adminMain', '/Admin', '/adminOrder'].includes(location.pathname)
 
 	return (
 		<header className='header'>
@@ -16,7 +17,7 @@ const Header = () => {
 					<img className='logo' src={logo} />
 				</Link>
 				<div className='nav_list'>
-					{location.pathname === '/adminMain'
+					{isAdminPage
 						? navAdminMenu.map((obj, index) => (
 								<Link to={obj.link} key={index}>
 									<p className={isActive(obj.link) ? 'activePage' : 'nav_link'}>
@@ -31,7 +32,8 @@ const Header = () => {
 									</p>
 								</Link>
 						  ))}
-					{location.pathname === '/adminMain' ? (
+						
+					{isAdminPage ? (
 						<Link to='/adminMain'>
 							<div className='shopcart'>
 								<Exit />

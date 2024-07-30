@@ -9,7 +9,7 @@ const OrderWindow = ({ order, onClose }) => { // Приймайте order і onC
         if (order.status !== 2) { // Перевірка чи статус не 2
             try {
                 setIsSubmitting(true); // Встановлення статусу відправки запиту
-                await axios.post('http://127.0.0.1:8000/api/admin/editorder', {
+                await axios.post('https://fish.api-dev.bmax.com.ua/api/admin/editorder', {
                     id: order.id,
                     status: 2 // Зміна статусу на 2
                 });

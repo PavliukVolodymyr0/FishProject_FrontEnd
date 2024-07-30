@@ -60,7 +60,7 @@ function Order() {
 
 		try {
 			const response = await axios.post(
-				'http://127.0.0.1:8000/api/order',
+				'https://fish.api-dev.bmax.com.ua/api/order',
 				orderData,
 				{
 					headers: {

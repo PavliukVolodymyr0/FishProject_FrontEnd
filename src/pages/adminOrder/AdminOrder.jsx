@@ -15,7 +15,7 @@ function AdminOrder() {
     const fetchData = async () => {
         console.log('Fetching data...');
         try {
-            const response = await axios.post('http://127.0.0.1:8000/api/admin/orders');
+            const response = await axios.post('https://fish.api-dev.bmax.com.ua/api/admin/orders');
             console.log(response.data.orders);
             setOrders(response.data.orders);
         } catch (error) {
