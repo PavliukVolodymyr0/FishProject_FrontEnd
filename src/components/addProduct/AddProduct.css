@@ -21,7 +21,8 @@
 	color: black;
 	margin: 0 auto;
 	padding: 10px;
-	font-size: 24px;
+	font-size: 36px;
+	border: none;
 
 }
 
@@ -73,3 +74,4 @@
 	border: none;
 	margin-left: 20px;
 }
+

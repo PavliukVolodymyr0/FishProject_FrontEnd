@@ -12,23 +12,19 @@
 
 .Category {
 	width: 1800px;
-	height: 1150px;
-	background: rgb(155, 191, 201);
-	background: linear-gradient(
-		309deg,
-		rgba(155, 191, 201, 1) 0%,
-		rgba(142, 229, 254, 1) 100%
-	);
+	height: 1000px;
+	padding: 40px;
+	background-color: #f4f4f4;
 	display: grid;
-	margin:  0 auto;
+	margin: 0 auto;
 	grid-template-columns: repeat(3, 1fr);
 	grid-gap: 10px;
 	border-radius: 40px;
-	
+	padding-top: 134px;
 }
 
 .btn {
-	background-color: white;
+	background-color: #90E0EF;
 	width: 300px;
 	height: 70px;
 	border-radius: 20px;
@@ -39,3 +35,45 @@
 	justify-content: center;
 	margin: 0 auto;
 }
+
+/* 1366px 768px */
+@media(max-width: 1366px) {
+	.AutoSlider {
+	margin: 200px 60px 60px 60px;
+	border-radius: 20px;
+}
+
+.ColectionCard {
+	display: flex;
+	margin: 0 70px 160px 70px;
+	align-items: center;
+	justify-content: center;
+}
+
+.Category {
+	width: 1300px;
+	height: 800px;
+	padding: 40px;
+	background-color: #f4f4f4;
+	display: grid;
+	margin: 0 auto;
+	grid-template-columns: repeat(3, 1fr);
+	grid-gap: 10px;
+	border-radius: 40px;
+	padding-top: 134px;
+}
+
+.btn {
+	background-color: #90E0EF;
+	width: 300px;
+	height: 70px;
+	border-radius: 20px;
+	font-weight: bold;
+	font-size: 36px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin: 0 auto;
+}
+
+ }

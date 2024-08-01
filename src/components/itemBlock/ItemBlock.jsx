@@ -21,7 +21,7 @@ function ItemBlock({ product }) {
 				{ id: product.id, ...product, quantity: 1 },
 			]
 			localStorage.setItem('cartItems', JSON.stringify(updatedCartItems))
-			alert("Товар додано до корзини")
+			alert('Товар додано до корзини')
 		} else {
 			alert('This product is already in your cart')
 		}
@@ -32,12 +32,22 @@ function ItemBlock({ product }) {
 			<img
 				className='imgCard'
 				src={`https://fish.api-dev.bmax.com.ua/storage/${product.photo}`}
+				alt={product.name}
 			/>
 			<div>
 				<h1 className='NameProduct'>{product.name}</h1>
 				<div className='InfoProduct'>
 					<div className='Price'>
-						<p>{product.price} грн</p>
+						{product.special_price ? (
+							<>
+								<span className='SpecialPrice'>
+									{product.special_price} грн
+								</span>
+								<span className='OriginalPrice'>{product.price} грн</span>
+							</>
+						) : (
+							<span>{product.price} грн</span>
+						)}
 					</div>
 					<div className='Buy' onClick={handleBuyClick}>
 						<BuyIcon />

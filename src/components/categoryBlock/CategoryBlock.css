@@ -1,7 +1,7 @@
 .DisplayCategory {
 	width: 500px;
 	height: 380px;
-	background-color: #f2f4fa;
+	background-color: #90E0EF;
 	border-radius: 20px;
 	display: flex;
 	flex-direction: column;
@@ -17,3 +17,31 @@
  height: 220px;
  object-fit: cover;
 }
+
+@media(max-width: 1366px) {
+
+		.DisplayCategory {
+	width: 350px;
+	height: 300px;
+	background-color: #90E0EF;
+	border-radius: 20px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+  border: 1px solid rgb(141, 70, 70);
+  box-shadow: 10px 10px 8px 0px rgba(0, 0, 0, 0.30);
+	margin-left: 20px;
+	
+}
+
+.DisplayCategory img{
+ width: 250px;
+ height: 175px;
+ object-fit: cover;
+}
+
+.DisplayCategory ,h1 {
+ font-size: 30px;
+}
+  }

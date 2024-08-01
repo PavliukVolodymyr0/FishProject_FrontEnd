@@ -18,3 +18,27 @@
 	display: block;
 	
 }
+
+@media(max-width: 1366px) { 
+	.title {
+	font-size: 45px;
+	font-weight: bold;
+}
+
+.heading {
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	margin-bottom: 50px;
+}
+
+.line {
+	width: 500px;
+	height: 2px;
+	background-color: black;
+	content: "";
+	display: block;
+	
+}
+
+}

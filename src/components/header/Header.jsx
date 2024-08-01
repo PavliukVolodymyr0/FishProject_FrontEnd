@@ -8,13 +8,15 @@ import Exit from '../../assets/svg/Exit.jsx'
 const Header = () => {
 	const location = useLocation()
 	const isActive = link => location.pathname === link
-	const isAdminPage = ['/adminMain', '/Admin', '/adminOrder'].includes(location.pathname)
+	const isAdminPage = ['/adminMain', '/Admin', '/adminOrder'].includes(
+		location.pathname
+	)
 
 	return (
 		<header className='header'>
 			<nav className='nav'>
 				<Link to='/'>
-					<img className='logo' src={logo} />
+					<img className='logo' src={logo} alt='Logo' />
 				</Link>
 				<div className='nav_list'>
 					{isAdminPage
@@ -32,7 +34,7 @@ const Header = () => {
 									</p>
 								</Link>
 						  ))}
-						
+
 					{isAdminPage ? (
 						<Link to='/adminMain'>
 							<div className='shopcart'>

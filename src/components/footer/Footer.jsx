@@ -4,6 +4,7 @@ import './Footer.css'
 const Footer = () => {
 	return (
 		<footer className='footer'>
+			<h1>Підтримка</h1>
 			<div className='footer_content'>
 				<ul className='footer_list'>
 					<h2 className='footer_titles'>Email</h2>

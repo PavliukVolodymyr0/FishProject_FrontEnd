@@ -91,24 +91,28 @@ function Order() {
 				<div className='orderInfo'>
 					<div className='userInfo'>
 						<input
+							className='userInfoInput'
 							type='text'
 							name='name'
 							onChange={e => SetName(e.target.value)}
 							placeholder='Введіть імя'
 						/>
 						<input
+							className='userInfoInput'
 							type='text'
 							onChange={e => SetSurName(e.target.value)}
 							name='lastname'
 							placeholder='Введіть прізвище'
 						/>
 						<input
+							className='userInfoInput'
 							type='text'
 							onChange={e => SetPatronymic(e.target.value)}
 							name='patronymic'
 							placeholder='Введіть По-батькові'
 						/>
 						<input
+							className='userInfoInput'
 							type='text'
 							name='phone'
 							onChange={e => SetPhoneNumber(e.target.value)}
@@ -117,18 +121,21 @@ function Order() {
 					</div>
 					<div className='cityInfo'>
 						<input
+							className='userInfoInput'
 							type='text'
 							onChange={e => SetCity(e.target.value)}
 							name='city'
 							placeholder='Введіть місто'
 						/>
 						<input
+							className='userInfoInput'
 							type='text'
 							onChange={e => SetStreet(e.target.value)}
 							name='street'
 							placeholder='Введіть вулицю'
 						/>
 						<input
+							className='userInfoInput'
 							type='text'
 							onChange={e => SetHouse(e.target.value)}
 							name='house'
