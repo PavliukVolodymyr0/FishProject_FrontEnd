@@ -5,7 +5,7 @@ import logo from '../../assets/images/Logo.png';
 import './Auth.css';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-
+import { Link, useLocation } from 'react-router-dom'
 
 function Auth() {
     const [email, setEmail] = useState('');
@@ -16,7 +16,6 @@ function Auth() {
 
 	const handleLogin = async (e) => {
 		e.preventDefault();
-		// Проста валідація наявності електронної пошти і пароля
 		if (!email || !password) {
 			setError('Будь ласка, введіть електронну пошту та пароль');
 			return;
@@ -46,23 +45,36 @@ function Auth() {
 	};
 
     return (
-        <>
-            <div className='body_auth' >
-                <img src={logo} alt='Logo' />
-                <img className='fish1' src={fish1} alt='fish1' />
-                <img className='fish2' src={fish2} alt='fish2' />
-                <form className='auth_block' onSubmit={handleLogin}>
-                    <h1>Авторизація</h1>
-					<input className="Input" type="text" placeholder='Введіть логін' onChange={(e) => setEmail(e.target.value)}/>
-					<input className="Input" type="password" placeholder='Введіть пароль' onChange={(e) => setPassword(e.target.value)}/>
-                    {/* <Input title={'Введіть емейл'} type={'text'} value={email} onChange={(e) => setEmail(e.target.value)} />
-					<Input title={'Введіть пароль'} type={'password'} value={password} onChange={(e) => setPassword(e.target.value)} /> */}
-                    {error && <p className="error-message">{error}</p>}
-                    <button type="submit"   className='button_auth'>Увійти</button>
-                </form>
-            </div>
-        </>
-    );
+			<>
+				<div className='body_auth'>
+					<Link to='/'>
+						<img className='logo' src={logo} alt='Logo' />
+					</Link>
+					<img className='fish1' src={fish1} alt='fish1' />
+					<img className='fish2' src={fish2} alt='fish2' />
+					<form className='auth_block' onSubmit={handleLogin}>
+						<h1>Авторизація</h1>
+						<input
+							className='Input'
+							type='text'
+							placeholder='Введіть логін'
+							onChange={e => setEmail(e.target.value)}
+						/>
+						<input
+							className='Input'
+							type='password'
+							placeholder='Введіть пароль'
+							onChange={e => setPassword(e.target.value)}
+						/>
+
+						{error && <p className='error-message'>{error}</p>}
+						<button type='submit' className='button_auth'>
+							Увійти
+						</button>
+					</form>
+				</div>
+			</>
+		)
 }
 
 export default Auth;

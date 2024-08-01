@@ -36,8 +36,8 @@ const Header = () => {
 						  ))}
 
 					{isAdminPage ? (
-						<Link to='/adminMain'>
-							<div className='shopcart'>
+						<Link to='/auth'>
+							<div className='exit'>
 								<Exit />
 							</div>
 						</Link>

@@ -27,10 +27,11 @@
 }
 
 .nav_link {
-	width: 175px;
+	width: 275px;
 	height: 55px;
 	font-size: 35px;
-	margin: 0 90px;
+	margin: 0 50px;
+	padding: 0;
 	color: black;
 	background-color: #ffffff;
 	border-radius: 14px;
@@ -41,8 +42,10 @@
 .nav_link:hover,
 .activePage {
 	background-color: #90e0ef;
-	width: 175px;
+	width: 275px;
 	height: 55px;
+	box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+	margin: 0 50px;
 	text-align: center;
 	padding: 0px;
 }
@@ -54,7 +57,7 @@
 
 .activePage {
 	font-size: 35px;
-	margin: 0 130px;
+	margin: 0 50px;
 	border-radius: 14px;
 	box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 	background-color: #90e0ef;
@@ -69,6 +72,12 @@
 	align-items: center;
 	justify-content: center;
 	background-color: #ffffff;
+}
+
+.exit {
+	height: 55px;
+	border-radius: 5px;
+	box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 
 @media(max-width: 1366px) {
