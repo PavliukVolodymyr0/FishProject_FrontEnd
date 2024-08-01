@@ -366,13 +366,18 @@ function Admin() {
           <h1>Відредагуйте рівень {editingParam}</h1>
           <div className="reg_block">
             <div className="up_down">
-              <img src={up} alt='up' onClick={() => setCounter(counter + 1)} />
-              <img src={down} alt='down' onClick={() => setCounter(counter - 1)} />
+              <img src={up} alt="up" onClick={() => setCounter(counter + 1)} />
+              <img 
+                src={down} 
+                alt="down" 
+                onClick={() => setCounter(prevCounter => Math.max(prevCounter - 1, 0))} 
+              />
             </div>
             <input 
               type="number" 
               value={counter} 
-              onChange={(e) => setCounter(parseFloat(e.target.value))} 
+              min="0" 
+              onChange={(e) => setCounter(Math.max(parseFloat(e.target.value), 0))} 
             />
           </div>
         </div>

@@ -4,6 +4,7 @@ import './Order.css'
 import NewPost from '../../assets/images/NewPost.png'
 import UaPost from '../../assets/images/UaPost.png'
 import Pickup from '../../assets/images/Pickup.png'
+import { useNavigate } from 'react-router-dom'
 
 function Order() {
 	const [surname, SetSurName] = useState('')
@@ -17,6 +18,8 @@ function Order() {
 	const [payment_type, SetPaymentType] = useState('card')
 	const [status, SetStatus] = useState('0')
 	const [items, SetItems] = useState([]) 
+
+	const navigate = useNavigate()
 
 	useEffect(() => {
 		const storedData = JSON.parse(localStorage.getItem('orders')) || []
@@ -71,6 +74,7 @@ function Order() {
 
 			console.log('Response:', response.data)
 			alert('Data has been saved')
+			navigate(`/`)
 		} catch (error) {
 			console.error(
 				'Error:',

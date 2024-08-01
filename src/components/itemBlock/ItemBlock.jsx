@@ -21,6 +21,7 @@ function ItemBlock({ product }) {
 				{ id: product.id, ...product, quantity: 1 },
 			]
 			localStorage.setItem('cartItems', JSON.stringify(updatedCartItems))
+			alert("Товар додано до корзини")
 		} else {
 			alert('This product is already in your cart')
 		}
