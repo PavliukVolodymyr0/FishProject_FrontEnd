@@ -40,7 +40,7 @@ function AdminOrder() {
                                 <div className="status">
                                     <h3>Статус: {order.status === 1 ? 'Не підтверджено' : 'Підтверджено'}</h3>
                                 </div>
-                                <h1>Ціна: {order.total_price}грн</h1>
+                                <h4>Ціна: {order.total_price}грн</h4>
                             </div>
                         </div>
                     ))

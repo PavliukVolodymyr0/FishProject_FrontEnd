@@ -15,8 +15,8 @@
     background: rgb(142,229,254);
     background: linear-gradient(135deg, rgba(142,229,254,1) 0%, rgba(155,191,201,1) 100%);
     border-radius: 20px;
-    border: 0px solid #ccc;
-    transition: border-color 0.3s ease; /* Анімація зміни кольору бордеру */
+    border: 3px solid #ccc;
+    transition: border-color 0.3s ease; 
     cursor: pointer;
 }
 
@@ -39,15 +39,21 @@
 }
 
 .order_card h3 {
-    font-size: 24px;
+    font-size: 20px;
 	font-weight: bold;
 	margin-top: 32px;
     margin-left: 21px;
 }
 
+.order_card h4 {
+    font-size: 24px;
+	font-weight: bold;
+    text-align: center;
+}
+
 .status{
     display: flex;
-    margin-bottom: 77px;
+    margin-bottom: 87px;
 }
 
 

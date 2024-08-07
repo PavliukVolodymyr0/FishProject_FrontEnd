@@ -180,6 +180,9 @@
     .basket_component img {
         width: 294px;
         height: 184px;
+        border-radius: 14px;
+        object-fit: cover;
+        margin-left: 10px;
     }
     
     .basket_component h1 {
@@ -229,6 +232,7 @@
     }
     
     .price h1 {
+        margin-left: 0;
         font-size: 36px;
         font-weight: normal;
     }
