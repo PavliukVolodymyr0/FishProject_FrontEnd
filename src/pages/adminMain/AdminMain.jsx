@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import ItemBlock from '../../components/itemBlock/ItemBlock'
 import './AdminMain.css'
 import AddProduct from '../../components/addProduct/AddProduct'
@@ -9,6 +9,7 @@ import axios from 'axios'
 function AdminMain() {
 	const [clickProduct, setClickProduct] = useState(false)
 	const [clickCategory, setClickCategory] = useState(false)
+	const [selectedType, setSelectedType] = useState('product')
 	const [categories, setCategories] = useState([])
 	const [products, setProducts] = useState([])
 
@@ -33,6 +34,10 @@ function AdminMain() {
 			})
 	}, [])
 
+	const handleToggleTypeClick = () => {
+		setSelectedType(prevType => (prevType === 'product' ? 'category' : 'product'))
+	}
+
 	const handleAddProductClick = () => {
 		setClickProduct(true)
 		setClickCategory(false)
@@ -47,28 +52,50 @@ function AdminMain() {
 		<>
 			<div className='AdminMainBlock'>
 				<div className='AdminMainBtn'>
-					<button className='addProduct' onClick={handleAddProductClick}>
-						Додати категорію
+					<button 
+						className={`addProduct123 ${selectedType === 'product' ? 'gradient-right' : 'gradient-left'}`}
+						onClick={handleToggleTypeClick}
+					>
+						Категорії | Товар
 					</button>
-					{clickProduct ? <AddProduct /> : ''}
+					
+					{selectedType === 'product' && (
+						<>
+							<button className='addProduct' onClick={handleAddProductClick}>
+								Додати категорію
+							</button>
+							{clickProduct && <AddProduct />}
+						</>
+					)}
 
-					<button className='addProduct' onClick={handleAddCategoryClick}>
-						Додати товар
+					{selectedType === 'category' && (
+						<>
+							<button className='addProduct' onClick={handleAddCategoryClick}>
+								Додати товар
+							</button>
+							{clickCategory && <AddCategory />}
+						</>
+					)}
+					<button className='addProduct12'>
+						Хіти продажу
 					</button>
-					{clickCategory ? <AddCategory /> : ''}
 				</div>
 				<div className='ColectionAdmin'>
-					<div className='ColectionProductAdmin'>
-						{products.map(product => (
-							<ItemBlock key={product.id} product={product} />
-						))}
-					</div>
-					<div className='VerticalLine'></div>
-					<div className='ColectionCategoryAdmin'>
-						{categories.map(category => (
-							<CategoryBlock key={category.id} category={category} />
-						))}
-					</div>
+					{selectedType === 'category' && (
+						<div className='ColectionProductAdmin'>
+							{products.map(product => (
+								<ItemBlock key={product.id} product={product} />
+							))}
+						</div>
+					)}
+
+					{selectedType === 'product' && (
+						<div className='ColectionCategoryAdmin'>
+							{categories.map(category => (
+								<CategoryBlock key={category.id} category={category} />
+							))}
+						</div>
+					)}
 				</div>
 			</div>
 		</>

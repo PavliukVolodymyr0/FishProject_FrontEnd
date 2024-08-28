@@ -7,6 +7,30 @@
     justify-content: center;
 }
 
+.addProduct123 {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 20px 30px;
+    color: black;
+    border-radius: 14px;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    padding: 7px;
+    width: 230px;
+    height: 50px;
+    border: none;
+    background: linear-gradient(to right, rgb(144,224,239) 0%, rgb(255,255,255) 72%);
+    transition: background 0.5s ease;
+}
+
+.gradient-right {
+    background: linear-gradient(to right, rgb(144,224,239) 0%, rgb(255,255,255) 72%);
+}
+
+.gradient-left {
+    background: linear-gradient(to left, rgb(144,224,239) 0%, rgb(255,255,255) 72%);
+}
+
+
 .addProduct {
     font-size: 24px;
     font-weight: bold;
@@ -23,6 +47,7 @@
 
 .Display {
     margin: 40px;
+    margin-top: 35px;
 }
 .VerticalLine {
     border: 2px solid black;
@@ -32,8 +57,8 @@
 .ColectionCategoryAdmin {
     
     display: grid;
-    grid-template-columns: repeat(2, 1fr); 
-  grid-template-rows: repeat(2, 1fr);
+    grid-template-columns: repeat(4, 1fr); 
+  grid-template-rows: repeat(4, 1fr);
     
 }
 
@@ -43,4 +68,19 @@
 
 .AdminMainBtn {
     justify-content: space-between;
+}
+
+.addProduct12 {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0 auto;
+    margin-left: 950px;
+    color: black;
+    background-color: #ffffff;
+    border-radius: 14px;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    padding: 7px;
+    width: 230px;
+    height: 50px;
+    border: none;
 }
