@@ -1,0 +1,48 @@
+.hit_sale{
+    width: 1300px;
+    height: auto;
+    border-radius: 12px;
+    border: 1px solid #000;
+    background-color: #FFFFFF;
+    z-index: 999;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    position: fixed;
+    margin-left: 300px;
+    bottom: 0px;
+}
+.close_h1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.close_h1 h1 {
+    flex-grow: 1;
+    text-align: center;
+}
+
+.close_h1 img {
+    height: 50px;
+    width: 50px;
+    margin-right: 30px;
+}
+
+.button_hit button{
+    height: 80px;
+    width: 266px;
+    background-color: #8EE5FE;
+    border: none;
+    border-radius: 20px;
+    font-size: 40px;
+    margin-bottom: 20px;
+}
+
+.main{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
+    grid-template-rows: repeat(1, 1fr);
+    max-height: 900px; /* Обмежуємо висоту контейнера */
+    overflow-y: auto; /* Додаємо вертикальний скрол */
+}

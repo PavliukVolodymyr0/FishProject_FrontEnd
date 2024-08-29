@@ -4,11 +4,13 @@ import './AdminMain.css'
 import AddProduct from '../../components/addProduct/AddProduct'
 import CategoryBlock from '../../components/categoryBlock/CategoryBlock'
 import AddCategory from '../../components/addCategory/AddCategory'
+import HitSale from '../../components/hitSale/HitSale'
 import axios from 'axios'
 
 function AdminMain() {
 	const [clickProduct, setClickProduct] = useState(false)
 	const [clickCategory, setClickCategory] = useState(false)
+	const [clickHitproduct, setClickHitproduct] = useState(false)
 	const [selectedType, setSelectedType] = useState('product')
 	const [categories, setCategories] = useState([])
 	const [products, setProducts] = useState([])
@@ -38,6 +40,11 @@ function AdminMain() {
 		setSelectedType(prevType => (prevType === 'product' ? 'category' : 'product'))
 	}
 
+	const handleAddHitProductClick = () => {
+		setClickHitproduct(false) 
+		setTimeout(() => setClickHitproduct(true), 0) 
+	}
+
 	const handleAddProductClick = () => {
 		setClickProduct(true)
 		setClickCategory(false)
@@ -51,6 +58,7 @@ function AdminMain() {
 	return (
 		<>
 			<div className='AdminMainBlock'>
+
 				<div className='AdminMainBtn'>
 					<button 
 						className={`addProduct123 ${selectedType === 'product' ? 'gradient-right' : 'gradient-left'}`}
@@ -76,9 +84,10 @@ function AdminMain() {
 							{clickCategory && <AddCategory />}
 						</>
 					)}
-					<button className='addProduct12'>
+					<button className='addProduct12' onClick={handleAddHitProductClick}>
 						Хіти продажу
 					</button>
+					{clickHitproduct && <HitSale products={products} />}
 				</div>
 				<div className='ColectionAdmin'>
 					{selectedType === 'category' && (
